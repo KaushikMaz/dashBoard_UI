@@ -54,6 +54,11 @@ const handleAllCheckBox=()=>{
   setData(prevdata=>prevdata.map(item=>({...item,isChecked:!allChecked})))
 
 }
+const handleDeleteAll = () => {
+  const checkedRows = data.filter((item) => item.isChecked);
+  const checkedIds = checkedRows.map((item) => item.id);
+  setData((prevData) => prevData.filter((item) => !checkedIds.includes(item.id)));
+}
 
 const filterData = () => {
   const filtered = data.filter(
@@ -81,7 +86,7 @@ const filterData = () => {
   }
   return (
     <div>
-      <Header onSearchChange={handleSearchChange}/>
+      <Header onSearchChange={handleSearchChange} onDeleteAll={handleDeleteAll}/>
       <table className="font-mono  h-3 border-black  border-t-2 border-b mx-10 my-2 text-gray-100  w-[80rem] ">
         <thead className='text-lg bg-slate-600'>
           <tr>
