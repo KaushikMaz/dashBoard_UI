@@ -2,6 +2,8 @@ import React from 'react';
 import { data_API } from './constants';
 import TableRow from './TableRow';
 import Header from './Header';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 
 const MainTable = () => {
   const [data, setData] = React.useState([]);
@@ -108,6 +110,14 @@ const MainTable = () => {
     setEditingRow(null);
   };
 
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(1, prevPage - 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(totalPages, prevPage + 1));
+  };
+
   return (
     <div>
       <Header onSearchChange={handleSearchChange} onDeleteAll={handleDeleteAll} />
@@ -136,16 +146,22 @@ const MainTable = () => {
           handleSaveEdit={handleSaveEdit}
         />
       ))}
-      <div className="ml-10">
+      <div className="ml-10 flex justify-center items-center">
+        <FaAnglesLeft onClick={()=>setCurrentPage(1)} className="cursor-pointer"/>
+        <FaChevronLeft onClick={handlePrevPage} className="cursor-pointer" />
         {Array.from({ length: totalPages }).map((_, pageIndex) => (
           <button
-            className="hover:bg-slate-500 hover:text-slate-200 ml-2 w-8 border border-slate-400 text-gray-700 rounded-lg"
+            className={`hover:bg-slate-300 hover:text-slate-600 ml-2 w-8 border border-slate-400 text-gray-700 rounded-lg ${
+              pageIndex + 1 === currentPage ? 'bg-slate-500 text-slate-200' : ''
+            }`}
             key={pageIndex + 1}
             onClick={() => handlePageChange(pageIndex + 1)}
           >
             {pageIndex + 1}
           </button>
         ))}
+        <FaChevronRight onClick={handleNextPage} className="cursor-pointer" />
+        <FaAnglesRight onClick={()=>setCurrentPage(totalPages)} className="cursor-pointer"/>
       </div>
     </div>
   );
