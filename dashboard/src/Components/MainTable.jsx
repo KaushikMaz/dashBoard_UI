@@ -8,7 +8,7 @@ const MainTable = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [filteredData,setFilteredData]=React.useState([])
   const [searchText, setSearchText] = React.useState('');
-  const rowsPerPage = 14;
+  const rowsPerPage = 10;
 
   React.useEffect(()=>{
    getDashboardData()
@@ -49,11 +49,18 @@ const MainTable = () => {
     setData(prevdata=>prevdata.map(item=>item.id===Itemid ?{...item,isChecked:!item.isChecked}:item))
 }
 
-const handleAllCheckBox=()=>{
-  setAllChecked(!allChecked)
-  setData(prevdata=>prevdata.map(item=>({...item,isChecked:!allChecked})))
+const handleAllCheckBox = () => {
+  setAllChecked(!allChecked);
+  setData((prevdata) =>
+    prevdata.map((item) => {
+      const isChecked =
+        (!allChecked && currentRows.some((row) => row.id === item.id)) ||
+        false;
+      return { ...item, isChecked };
+    })
+  );
+};
 
-}
 const handleDeleteAll = () => {
   const checkedRows = data.filter((item) => item.isChecked);
   const checkedIds = checkedRows.map((item) => item.id);
