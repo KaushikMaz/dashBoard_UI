@@ -4,6 +4,7 @@ import TableRow from './TableRow';
 import Header from './Header';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
+import FunnyComponent from "./FunnyComponent";
 
 const MainTable = () => {
   const [data, setData] = React.useState([]);
@@ -139,7 +140,7 @@ const MainTable = () => {
           </tr>
         </thead>
       </table>
-      {currentRows.map((rowData) => (
+      {currentRows.length>0?(currentRows.map((rowData) => (
         <TableRow
           key={rowData.id}
           {...rowData}
@@ -150,7 +151,7 @@ const MainTable = () => {
           handleEditChange={handleEditChange}
           handleSaveEdit={handleSaveEdit}
         />
-      ))}
+      ))):(<FunnyComponent/>)}
       <div className="ml-10 flex justify-center items-center">
         <FaAnglesLeft onClick={()=>setCurrentPage(1)} className="cursor-pointer"/>
         <FaChevronLeft onClick={handlePrevPage} className="cursor-pointer" />
