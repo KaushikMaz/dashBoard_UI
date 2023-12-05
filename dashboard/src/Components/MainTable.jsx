@@ -54,8 +54,12 @@ const MainTable = () => {
     setAllChecked(!allChecked);
     setData((prevdata) =>
       prevdata.map((item) => {
-        const isChecked =
-          (!allChecked && data.some((row) => row.id === item.id)) || false;
+         // Check if the item is in the current page
+        const isInCurrentPage = currentRows.some((row) => row.id === item.id);
+      
+        // Set isChecked based on isInCurrentPage
+        const isChecked = (!allChecked && isInCurrentPage) || false;
+
         return { ...item, isChecked };
       })
     );
