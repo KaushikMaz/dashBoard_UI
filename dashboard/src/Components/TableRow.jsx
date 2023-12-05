@@ -18,10 +18,10 @@ const TableRow = ({
 }) => {
   return (
     <div>
-      <table className="my-2 text-gray-800 w-[80rem] mx-10 border-b border-gray-300">
+      <table className="my-1 text-gray-800 w-[80rem] mx-10 border-b border-gray-300">
         <tbody>
-          <tr className={`${isChecked ? 'bg-slate-100' : ''}`}>
-            <th className="w-[5rem] pl-2 ">
+          <tr className={`${isChecked ? 'bg-slate-100' : ''}h-8`}>
+            <th className="w-[5rem] pl-1  ">
               <div>
               <input
                 type="checkbox"
@@ -30,11 +30,25 @@ const TableRow = ({
               />
               </div>
             </th>
-            <th className="w-[18rem]">
+            <th className="w-[8rem]">
               {editingRow === id ? (
                 <div>
                 <input
-                className="text-center"
+                className="text-center  w-[2rem] border border-gray-500 rounded-lg"
+                  type="text"
+                  value={id}
+                  onChange={(e) => handleEditChange(e, "id")}
+                />
+                </div>
+              ) : (
+                <div>{id}</div>
+              )}
+            </th>
+            <th className="w-[15rem]">
+              {editingRow === id ? (
+                <div>
+                <input
+                className="text-center  w-[12rem] border border-gray-500 rounded-lg"
                   type="text"
                   value={name}
                   onChange={(e) => handleEditChange(e, 'name')}
@@ -44,10 +58,10 @@ const TableRow = ({
                 <div>{name}</div>
               )}
             </th>
-            <th className="w-[18rem]">
+            <th className="w-[16rem]">
               {editingRow === id ? (
                 <input
-                className="text-center"
+                className="text-center w-[16rem] border border-gray-500 rounded-lg"
                   type="text"
                   value={email}
                   onChange={(e) => handleEditChange(e, 'email')}
@@ -56,9 +70,9 @@ const TableRow = ({
                 <div>{email}</div>
               )}
             </th>
-            <th className="w-[12rem]">
+            <th className="w-[17rem]">
               {editingRow === id ? (
-                <input className="text-center"
+                <input className="text-center w-[12rem] border border-gray-500 rounded-lg"
                   type="text"
                   value={role}
                   onChange={(e) => handleEditChange(e, 'role')}
@@ -67,7 +81,7 @@ const TableRow = ({
                 <div>{role}</div>
               )}
             </th>
-            <th className="w-[27rem] pl-[13rem] flex items-center">
+            <th className="w-[22rem] pl-[9rem] flex items-center">
               <div className="cursor-pointer ">
                 {editingRow === id ? (
                   <FaSave onClick={handleSaveEdit} />

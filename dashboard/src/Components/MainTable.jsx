@@ -121,12 +121,13 @@ const MainTable = () => {
   return (
     <div>
       <Header onSearchChange={handleSearchChange} onDeleteAll={handleDeleteAll} />
-      <table className="font-mono h-3 border-black border-t-2 border-b mx-10 my-2 text-gray-100 w-[80rem]">
+      <table className="font-mono  border-black border-t-2 border-b mx-10 my-1 text-gray-100 w-[80rem]">
         <thead className="text-lg bg-slate-600">
           <tr>
             <th>
               <input type="checkbox" onChange={handleAllCheckBox} />
             </th>
+            <th className="hover:italic">Id</th>
             <th className="hover:italic">Name</th>
             <th className="hover:italic">Email</th>
             <th className="hover:italic">Role</th>
