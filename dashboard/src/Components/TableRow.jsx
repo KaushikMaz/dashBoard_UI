@@ -18,9 +18,9 @@ const TableRow = ({
 }) => {
   return (
     <div>
-      <table className="my-1 text-gray-800 w-[80rem] mx-10 border-b border-gray-300">
+      <table className="my-1 text-gray-800 w-[80rem] h-8 mx-10 border-b border-gray-300">
         <tbody>
-          <tr className={`h-8 ${isChecked ? 'bg-slate-200' : ''}`}>
+          <tr className={` ${isChecked ? 'bg-slate-200' : ''}`}>
             <th className="w-[5rem] pl-1  ">
               <div>
               <input
